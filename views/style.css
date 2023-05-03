@@ -1,0 +1,539 @@
+
+@import url('https://fonts.googleapis.com/css?family=Miriam+Libre&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Actor&display=swap');
+/* Import Google Fonts */
+
+
+.COLORCODES {
+    color: #77e081;
+    color: #4fac58;
+    color: #c85c65;
+    color: #99363f;
+    color: #F4BC41;
+    color: #a17c2d;
+}
+
+
+/* Global Styles */
+body {
+    font-family: "Actor Regular", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    background-color: rgb(37, 37, 38);
+    
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: 3rem;
+    font-family: "Miriam Libre", sans-serif;
+}
+
+h2 {
+    font-size: 2.5rem;
+    font-family: "Miriam Libre", sans-serif;
+    color: #F4BC41;
+}
+
+h3 {
+    font-size: 2rem;
+    font-family: "Miriam Libre", sans-serif;
+}
+
+h4 {
+    font-size: 1.5rem;
+    font-family: "Miriam Libre", sans-serif;
+}
+
+h5 {
+    font-size: 1.25rem;
+    font-family: "Miriam Libre", sans-serif;
+}
+
+h6 {
+    font-size: 1rem;
+    font-family: "Miriam Libre", sans-serif;
+}
+
+
+
+a {
+    color: #F4BC41;
+    text-decoration: none;
+    font-family: "Actor Regular", sans-serif;
+}
+
+a:hover {
+    color: #a17c2d;
+    text-decoration: underline;
+}
+
+
+/* Navigation Bar Styles */
+.navbar {
+    background-color: rgb(0, 0, 0);
+
+}
+
+.navbar-brand img {
+    width: 50px;
+    height: 50px;
+}
+
+.navbar-nav .nav-item {
+    position: relative;
+}
+
+.navbar-nav .nav-item .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 10rem;
+    padding: 0.5rem 0;
+    margin: 0.125rem 0 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.25rem;
+    font-family: "Actor Regular", sans-serif;
+}
+
+.navbar-nav .nav-item .dropdown-menu a {
+    display: block;
+    padding: 0.25rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    color: #000000;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    font-family: "Actor Regular", sans-serif;
+}
+
+.navbar-nav .nav-item:hover .dropdown-menu {
+    display: block;
+    font-family: "Actor Regular", sans-serif;
+}
+
+#navlog{
+    color: #77e081;
+}
+
+#navlog:hover {
+    color: #4fac58;
+}
+
+.form-inline .form-control {
+    width: 100%;
+    margin-right: 0;
+}
+
+#menu-button:hover {
+    background-color: #403f3f; 
+  }
+
+
+/* Search Bar Styles */
+
+.search-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    padding: 5 1rem;
+    font-family: "Actor Regular", sans-serif;
+}
+
+#search-button{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+}
+
+/* Header Image Styles */
+/* Center the search bar and button within the header */
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+  
+header img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Body Content Styles */
+/* Game Cards */
+
+button {
+    font-family: "Actor Regular", sans-serif;
+    background-color: #F4BC41;
+    border: none;
+    size: 1.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    color: #000000;
+
+}
+
+button:hover {
+    background-color: #a17c2d;
+    color: #000000;
+}
+
+.game-card-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 8px;
+    overflow-x: auto;
+    max-width: 100%;
+}
+  
+.game-card {
+    width: 300px;
+    height: 400px;
+    margin: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 3px solid rgb(0, 0, 0);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: rgb(0, 0, 0);
+    text-align: center;
+    transition: box-shadow 0.1s ease-in-out;
+
+}
+/* adaptive .game-card */
+@media (max-width: 796px) {
+    .game-card {
+      width: 100%;
+      height: auto;
+      margin: 10px 0;
+    }
+
+  }
+
+.game-card:hover {
+    box-shadow: 10px 6px 3px rgb(119, 224, 129, 0.2);
+  }
+
+.game-card h2 {
+    margin: 0;
+    font-size: 1.7rem;
+    font-weight: bold;
+    padding-bottom: 12px;
+}
+
+@media screen and (max-width: 796px) {
+    /* adjust font size for smaller screens */
+    .game-card h2 {
+      font-size: .8rem;
+    }
+  }
+  
+.game-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 795px) {
+    /* adjust image size for smaller screens */
+    .game-card img {
+      height: 80px;
+    }
+  }
+
+@media screen and (min-width: 796px) {
+/* adjust image size for smaller screens */
+.game-card img {
+    height: 300px;
+}
+}
+  
+/* Popup Game Description Window */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.popup-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    max-width: 300px;
+    max-height: 80%;
+    overflow: hidden;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+}
+
+.popup-header {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    z-index: 1;
+  }
+
+.popup-scrollable-content {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 12px;
+}
+
+.popup-content h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: #000000;
+    text-align: center;
+}
+
+.popup-content p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+.popup-content button {
+    background-color: #F4BC41;
+    color: #000000;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.1s ease-in-out;
+}
+
+.popup-content button:hover {
+    background-color: #a17c2d;
+}
+
+.container {
+    max-width: 1200px; /* Set a max-width for the main content area */
+    margin: 0 auto; /* Center the main content area within the viewport */
+}
+
+/* For screens smaller than 768px */
+@media (max-width: 767px) {
+    .popup-content {
+        width: 90%;
+        max-width: 400px;
+        max-height: 500px;
+        padding: 10px;
+    }
+}
+
+/* For screens between 768px and 1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .popup-content {
+        width: 80%;
+        max-width: 800px;
+        padding: 15px;
+    }
+}
+
+/* For screens larger than 1023px */
+@media (min-width: 1024px) {
+    .popup-content {
+        width: 50%;
+        max-width: 1200px;
+        padding: 20px;
+    }
+}
+
+/* For screens smaller than 768px (mobile devices) */
+@media (max-width: 767px) {
+.header {
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+}
+}
+
+/* For screens larger than 768px (desktop devices) */
+@media (min-width: 768px) {
+.header {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 500px; 
+}
+}
+  
+
+/* Login Form */
+#login-form {
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: 48px;
+    padding: 20px;
+    background-color: #000000;
+    color: #FFFFFF;
+    border-radius: 10px;
+}
+
+#login-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+    color: #F4BC41;
+}
+
+#login-form input[type="email"],
+#login-form input[type="password"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #FFFFFF;
+}
+
+#login-form button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #F4BC41;
+    color: #000000;
+    font-size: 1.1rem;
+    cursor: pointer;
+    font-family:  "Miriam Libre", sans-serif;;
+
+}
+
+#create-link{
+    display: block;
+    text-align: center;
+    margin-top: 48px;
+    color: #F4BC41;
+    font-size: 1.1rem;
+    text-decoration: underline;
+}
+
+#create-link:hover {
+    color: #a17c2d;
+}
+
+#login-form .error {
+    color: #F4BC41;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+#login-form h3{
+    text-align: center;
+    margin-bottom: 20px;
+    color: #77e081;
+}
+
+
+/* Create Account Form */
+.register-container {
+    max-width: 650px; 
+    margin: 0 auto;
+    margin-top: 48px;
+    margin-bottom: 48px;
+    background-color: #000000;
+    border-radius: 10px;
+    padding: 20px;
+    }
+
+    
+form {
+    padding: 20px;
+}
+    
+.form-group {
+    margin-bottom: 20px;
+}
+    
+label {
+    color: #F4BC41;
+}
+
+.register-container h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #77e081;
+}
+    
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    width: 100%;
+}
+
+small.form-text {
+    color: #F4BC41;
+}
+
+input[type="submit"] {
+    display: block;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #F4BC41;
+    color: #000000;
+    font-size: 1.1rem;
+    cursor: pointer;
+    font-family: "Miriam Libre", sans-serif;
+
+}
+
+button[type="submit"]:hover {
+    background-color: #a17c2d;
+    color: #000000;
+}
+
+
+
