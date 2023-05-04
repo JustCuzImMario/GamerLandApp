@@ -3,18 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to GamerLand <%= username %> </title>
+    <title>GamerLand</title>
     <link href="https://fonts.googleapis.com/css?family=Miriam+Libre&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Actor&display=swap" rel="stylesheet">
 
-    <!-- Bootstrap CSS -->
+    <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- my CSS -->
+    <!-- Include custom CSS -->
     <link rel="stylesheet" href="style.css">
 
 </head>
-
-
 <body>
     <!-- NAV BAR -->
     <nav class="navbar navbar-expand-lg">
@@ -36,24 +34,33 @@
             </ul>
             
             <ul class="navbar-nav ml-auto">
-                <form action="/logout?_method=DELETE" method="POST">
-                    <li class="nav-item">
-                        <button id="navlog" class="nav-link" type="submit" style="background-color: black;">Logout</button>
-                    </li>
-                </form>
+                <li class="nav-item">
+                    <a id="navlog" class="nav-link" href="login.html">Login</a>
+                </li>
             </ul>
         </div>
     </nav>
 
     <!-- END OF NAV BAR-->
 
-    <!-- Header Image -->
-    <header>
-        <img src="../images/GamerLandHeader.png" alt="GamerLand" class="img-fluid">
-
-    </header>
+    <!-- Search Bar -->
+    <div class="search-container">
+        <form id="search-form">
+          <input type="text" id="search-input" placeholder="Search Game Title...">
+          <button id="search-button">Search</button>
+        </form>
+    </div>
 
     <!-- Body Content -->
+    <div id="search-results"></div>
+
+    <script>
+        window.RAWG_API_KEY = "c0c4266a6e0c49218d68459d4798adc7";
+    </script>
+    <script src="rawg.js"></script>
+
+
+    
 
 
 </body>

@@ -2,6 +2,7 @@ if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
 }
 
+
 // Importing libraries via npm
 const express = require('express');
 const app = express();
@@ -11,10 +12,17 @@ const flash = require('express-flash');
 const session = require('express-session');
 const passport = require('passport');
 const methodOverride = require('method-override');
+const sqlite3 = require('sqlite3').verbose();
+const db = new sqlite3.Database('users.db');
+
+app.set('view-engine', 'ejs');
+
+
 
 // Serve static files from the "views" directory
 app.use(express.static('views'));
-
+app.use(express.static(__dirname));
+app.use(express.static('images'));
 
 
 initializePassport(
@@ -24,11 +32,8 @@ initializePassport(
   );
 
 app.use(express.static('views'));
-
-
-const users = []
-
 app.use(express.urlencoded({ extended: false }));
+
 app.use(flash());
 app.use(session({
     secret: process.env.SESSION_SECRET, // used to sign the session ID cookie
@@ -39,32 +44,49 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(methodOverride('_method'));
 
-// POST Login
-app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
-    successRedirect: '/login_success',
-    failureRedirect: '/login',
-    failureFlash: true,
-}));
 
-// POST Register
-app.post('/register', checkNotAuthenticated, async (req, res) => {
-    
-    try {
-        const hashedPassword = await bcrypt.hash(req.body.password, 10)
-        users.push({
-            id: Date.now().toString(),
-            username: req.body.username,
-            email: req.body.email,
-            password: hashedPassword,
-        })
-        console.log(users) //logging users array to console
-        res.redirect('/login')
-    } catch (error) {
-        console.log(error)
-        res.redirect('/register');
-    }}
-);
 
+// Login and Register routes
+app.post('/login', (req, res) => {
+    const { email, password } = req.body;
+    const sql = `SELECT * FROM users WHERE email = ?`;
+    db.get(sql, [email], (err, row) => {
+      if (err) {
+        return console.error(err.message);
+      }
+      if (row) {
+        const hashedPassword = row.password;
+        if (bcrypt.compareSync(password, hashedPassword)) {
+          res.render('login_success.ejs', { title: 'Login Success', username: row.username });
+        } else {
+          res.render('login.ejs', { title: 'Login', error: 'Invalid email or password' });
+        }
+      } else {
+        res.render('login.ejs', { title: 'Login', error: 'Invalid email or password' });
+      }
+    });
+  });
+  
+  
+app.get('/register', (req, res) => {
+res.render('register.ejs', { title: 'Register' });
+});
+
+app.post('/register', (req, res) => {
+const { username, email, password } = req.body;
+const hashedPassword = bcrypt.hashSync(password, 10);
+const sql = `INSERT INTO users (username, email, password) VALUES (?, ?, ?)`;
+db.run(sql, [username, email, hashedPassword], (err) => {
+    if (err) {
+    return console.error(err.message);
+    }
+    res.render('login.ejs', { title: 'Login', message: 'Registration successful. Please login.' });
+});
+});
+
+
+
+// Routes
 app.get('/login_success', checkAuthenticated, (req, res) => {
     res.render('login_success.ejs', {username: req.user.username});
 });
@@ -79,6 +101,8 @@ app.get('/register', checkNotAuthenticated, (req, res) => {
 
 //END Routes
 
+
+// Logout route
 app.delete('/logout', (req, res) => {
     req.logout(req.user, err => {
         if (err) return next(err);
