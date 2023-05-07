@@ -49,8 +49,6 @@ searchForm.addEventListener("submit", (event) => {
             gameCard.appendChild(gameTitle);
             gameCard.appendChild(gameCover);
 
-
-
             // Append game title and cover to game card
             gameCard.appendChild(gameTitle);
             gameCard.appendChild(gameCover);
@@ -76,6 +74,13 @@ searchForm.addEventListener("submit", (event) => {
                 const popupTitle = document.createElement('h2');
                 popupTitle.textContent = game.name;
                 popupContent.appendChild(popupTitle);
+
+                // Add Metacritic rating
+                const metacriticRating = document.createElement("div");
+                metacriticRating.innerText = `Metacritic: ${game.metacritic || "N/A"}`;
+                metacriticRating.classList.add("metacritic-rating");
+                popupHeader.appendChild(metacriticRating);
+                
 
                 // Add 'close' button
                 const closeButton = document.createElement('button');
