@@ -20,7 +20,7 @@ body {
     font-size: 16px;
     line-height: 1.5;
     color: #333;
-    background-color: rgb(37, 37, 38);
+    background-color: #fff;
     
 }
 
@@ -150,7 +150,7 @@ a:hover {
 
 /* Search Bar Styles */
 
-.search-container{
+.search-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -160,13 +160,14 @@ a:hover {
     height: 100%;
     padding: 5 1rem;
     font-family: "Actor Regular", sans-serif;
-}
-
-#search-button{
+    background-color: #000000;
+  }
+  
+#search-button {
     margin-top: 1rem;
     margin-bottom: 1rem;
-
 }
+  
 
 /* Header Image Styles */
 /* Center the search bar and button within the header */
@@ -534,6 +535,64 @@ button[type="submit"]:hover {
     background-color: #a17c2d;
     color: #000000;
 }
+
+
+/* Ratings Style for Game Search */
+
+.ratings-container {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+input[type="range"] {
+    width: 1rem;
+    margin-right: 1rem;
+}
+
+output {
+    font-weight: bold;
+    margin-right: 1rem;
+}
+
+.hearts-container {
+    display: flex;
+}
+
+.hearts-container img {
+    width: 1.8rem;
+    height: 1.8rem;
+    margin-right: .3rem;
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.hearts-container img:hover,
+.hearts-container img:focus {
+    opacity: 1;
+}
+
+button.submit-button {
+    background-color: #77e081;
+    color: #000000;
+    margin-left: .8rem;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+  }
+  
+button.submit-button:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.ratings-label {
+    font-size: 1.1rem;
+    color: #000000;
+    text-align: center;
+}
+
 
 
 

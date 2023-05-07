@@ -4,6 +4,8 @@ const searchResults = document.querySelector("#search-results");
 const apiKey = RAWG_API_KEY;
 
 
+
+
 // RAWG API
 // Search for games
 searchForm.addEventListener("submit", (event) => {
@@ -40,6 +42,13 @@ searchForm.addEventListener("submit", (event) => {
                 } else {
                 gameCover.appendChild(document.createTextNode("No Image"));
                 }
+
+
+
+            // Append game title, cover, and ratings to game card
+            gameCard.appendChild(gameTitle);
+            gameCard.appendChild(gameCover);
+
 
 
             // Append game title and cover to game card
@@ -89,16 +98,80 @@ searchForm.addEventListener("submit", (event) => {
 
                 popupContent.appendChild(popupScrollableContent);
 
-                popup.appendChild(popupContent);
-                document.body.appendChild(popup);
+                // Add ratings slider
+                const ratingsContainer = document.createElement("div");
+                ratingsContainer.classList.add("ratings-container");
+                ratingsContainer.style.display = "flex";
+                ratingsContainer.style.justifyContent = "center";
+                ratingsContainer.style.alignItems = "center";
+
+                const ratingsLabel = document.createElement("label");
+                ratingsLabel.innerText = "Rate this game!";
+                ratingsLabel.classList.add("ratings-label");
+                ratingsLabel.style.color = "black";
+
+                const ratingsOutput = document.createElement("output");
+
+                const heartsContainer = document.createElement("div");
+                heartsContainer.classList.add("hearts-container");
+                for (let i = 0; i < 5; i++) {
+                  const heart = document.createElement("img");
+                  heart.src = "/images/heart.png";
+                  heart.dataset.value = i + 0.5;
+                  heartsContainer.appendChild(heart);
+                }
+
+
+                // Add submit button
+                const submitButton = document.createElement("button");
+                submitButton.textContent = "Submit";
+                submitButton.classList.add("submit-button");
+
+                submitButton.addEventListener("click", async () => {
+                  const rating = parseFloat(ratingsOutput.value);
+                  const currentUser = getCurrentUser();
+                  const username = currentUser.username;
+
+                  // Save rating in the database
+                  try {
+                    await fetch(`/games/${game.id}/ratings`, {
+                      method: "POST",
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({ username, rating }),
+                    });
+                    alert("Rating saved successfully!");
+                  } catch (error) {
+                    console.error(error);
+                    alert("Failed to save rating. Please try again later.");
+                  }
+                });
+
+
+                // Append ratings slider to ratings container
+                ratingsContainer.appendChild(ratingsLabel);
+                ratingsContainer.appendChild(ratingsOutput);
+                ratingsContainer.appendChild(heartsContainer);
+                ratingsContainer.appendChild(submitButton);
+
+            
+
+                
+
+                // Append ratings slider to popup content
+                popupContent.appendChild(ratingsContainer);
 
                 // Append popup content and close button to popup
                 popupContent.appendChild(closeButton);
                 popup.appendChild(popupContent);
                 document.body.appendChild(popup);
+                
 
               });
             });
+        
+        
         // Append game cards to search results
         searchResults.appendChild(gameCardContainer);
         
