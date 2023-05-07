@@ -14,6 +14,8 @@ const passport = require('passport');
 const methodOverride = require('method-override');
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('users.db');
+const db = require('./passport-config').db;
+
 
 
 
@@ -125,6 +127,27 @@ function checkNotAuthenticated (req, res, next){
     }
     next();
 }
+
+
+// Rating route
+app.post('/rating', (req, res) => {
+  const user = req.user; // get the authenticated user from Passport.js
+  const gameId = req.body.gameId;
+  const rating = req.body.rating;
+
+  // insert the rating into your SQLite database, associated with the authenticated user's username and the game ID
+  const sql = `INSERT INTO ratings (username, game_id, rating) VALUES (?, ?, ?)`;
+  db.run(sql, [user.username, gameId, rating], function(err) {
+    if (err) {
+      console.log(err.message);
+      res.status(500).send('Error saving rating');
+    } else {
+      res.status(200).send('Rating saved successfully');
+    }
+  });
+});
+
+
 
 
 app.listen(3000);
