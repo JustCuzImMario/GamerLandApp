@@ -26,10 +26,8 @@ function initialize(passport, getUserByEmail, getUserById){
               console.log(error);
               return done(error);
             }
-
           });
-
-    };
+        };
 
    
         passport.use(new LocalStrategy({ usernameField: 'email' }, authenticateUsers));
