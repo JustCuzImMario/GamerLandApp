@@ -600,7 +600,14 @@ button.submit-button:hover {
     text-shadow: #4CAF50 1px 1px;
 }
 
+/* Welcome Message (login_success.ejs) */
 
-
+.welcome-message{
+    text-align: center;
+    margin-top: 48px;
+    margin-bottom: 48px;
+    color: #F4BC41;
+    font-size: 2rem;
+}
 
 

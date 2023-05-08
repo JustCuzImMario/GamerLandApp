@@ -49,6 +49,8 @@ app.use(methodOverride('_method'));
 
 
 
+
+
 // Login and Register routes
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
@@ -90,6 +92,10 @@ db.run(sql, [username, email, hashedPassword], (err) => {
 
 
 // Routes
+app.get('/', (req, res) => {
+  res.render('login.ejs');
+});
+
 app.get('/login_success', checkAuthenticated, (req, res) => {
     res.render('login_success.ejs', {username: req.user.username});
 });
@@ -122,7 +128,7 @@ function checkAuthenticated (req, res, next){
 
 function checkNotAuthenticated (req, res, next){
     if (req.isAuthenticated()){
-       return res.redirect('/index.html');
+       return res.redirect('/index.ejs');
     }
     next();
 }
@@ -145,6 +151,7 @@ app.post('/rating', (req, res) => {
     }
   });
 });
+
 
 
 
